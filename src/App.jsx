@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useStore } from "./store/useStore";
 import SummaryCards from "./components/SummaryCards";
 import Charts from "./components/Charts";
@@ -15,6 +15,7 @@ export default function App() {
   const darkMode = useStore((state) => state.darkMode);
   const setDarkMode = useStore((state) => state.setDarkMode);
   const currentPage = useStore((state) => state.currentPage);
+  const [sidebarOpen, setSidebarOpen] = useState(true);
 
   // Initialize dark mode from localStorage on app load
   useEffect(() => {
@@ -24,11 +25,12 @@ export default function App() {
       setDarkMode(isDark);
       applyTheme(isDark);
     } else {
-      // Default to dark mode if no preference saved
-      setDarkMode(true);
-      applyTheme(true);
+      // Check system preference
+      const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+      setDarkMode(prefersDark);
+      applyTheme(prefersDark);
     }
-  }, []);
+  }, [setDarkMode]);
 
   // Apply theme whenever darkMode changes
   useEffect(() => {
@@ -46,10 +48,25 @@ export default function App() {
     }
   };
 
+  // Close sidebar on small screens
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth < 768) {
+        setSidebarOpen(false);
+      } else {
+        setSidebarOpen(true);
+      }
+    };
+
+    window.addEventListener("resize", handleResize);
+    handleResize();
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
   return (
-    <div className="min-h-screen bg-slate-50 text-slate-900 dark:bg-slate-950 dark:text-gray-100 transition-colors duration-300">
-      <Sidebar />
-      <div className="ml-20 md:ml-72 xl:ml-80 min-h-screen">
+    <div className="min-h-screen bg-white text-slate-900 dark:bg-slate-950 dark:text-gray-100 transition-colors duration-300">
+      <Sidebar open={sidebarOpen} setOpen={setSidebarOpen} />
+      <div className={`${sidebarOpen ? "md:ml-72 xl:ml-80" : ""} sm:ml-20 transition-all duration-300 min-h-screen`}>
         <Topbar />
 
         <main className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-6 md:py-8">
