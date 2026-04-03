@@ -60,7 +60,7 @@ export default function Charts() {
     <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 md:gap-6">
       {/* Monthly Trend Line Chart */}
       <div
-        className="animate-fade-in-up rounded-2xl overflow-hidden bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm dark:shadow-lg"
+        className="animate-fade-in-up card card-hover overflow-hidden"
         style={{ animationDelay: "0.1s" }}
       >
         <div className="p-6 md:p-8 space-y-4">
@@ -124,7 +124,7 @@ export default function Charts() {
 
       {/* Spending by Category Pie Chart */}
       <div
-        className="animate-fade-in-up rounded-2xl overflow-hidden bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm dark:shadow-lg"
+        className="animate-fade-in-up card card-hover overflow-hidden"
         style={{ animationDelay: "0.2s" }}
       >
         <div className="p-6 md:p-8 space-y-4">

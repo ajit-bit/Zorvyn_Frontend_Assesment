@@ -74,7 +74,7 @@ export default function Modal() {
 
   return (
     <div className="fixed inset-0 bg-black/50 backdrop-blur-md flex items-center justify-center z-50 animate-fade-in">
-      <div className="bg-white dark:bg-slate-900 p-8 rounded-2xl shadow-2xl w-full max-w-md border border-slate-200 dark:border-slate-800 animate-scale-in">
+      <div className="card card-hover p-8 w-full max-w-md border border-slate-200 dark:border-slate-800 animate-scale-in">
         {/* Header */}
         <div className="flex justify-between items-center mb-6">
           <div className="flex items-center gap-3">

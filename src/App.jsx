@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useLayoutEffect, useState } from "react";
 import { useStore } from "./store/useStore";
 import SummaryCards from "./components/SummaryCards";
 import Charts from "./components/Charts";
@@ -16,20 +16,18 @@ export default function App() {
   const setDarkMode = useStore((state) => state.setDarkMode);
   const currentPage = useStore((state) => state.currentPage);
   const [sidebarOpen, setSidebarOpen] = useState(true);
+  const [mounted, setMounted] = useState(false);
 
-  // Initialize dark mode from localStorage on app load
-  useEffect(() => {
+  // Initialize dark mode from localStorage on app load (before paint)
+  useLayoutEffect(() => {
     const savedTheme = localStorage.getItem("theme");
-    if (savedTheme) {
-      const isDark = savedTheme === "dark";
-      setDarkMode(isDark);
-      applyTheme(isDark);
-    } else {
-      // Check system preference
-      const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
-      setDarkMode(prefersDark);
-      applyTheme(prefersDark);
-    }
+    const isDark = savedTheme
+      ? savedTheme === "dark"
+      : window.matchMedia("(prefers-color-scheme: dark)").matches;
+
+    setDarkMode(isDark);
+    applyTheme(isDark);
+    setMounted(true);
   }, [setDarkMode]);
 
   // Apply theme whenever darkMode changes
@@ -63,29 +61,31 @@ export default function App() {
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
+  if (!mounted) return null;
+
   return (
-    <div className="min-h-screen bg-white text-slate-900 dark:bg-slate-950 dark:text-gray-100 transition-colors duration-300">
+    <div className="min-h-screen gradient-bg text-slate-800 dark:text-white transition-colors duration-300">
       <Sidebar open={sidebarOpen} setOpen={setSidebarOpen} />
       <div className={`${sidebarOpen ? "md:ml-72 xl:ml-80" : ""} sm:ml-20 transition-all duration-300 min-h-screen`}>
         <Topbar />
 
         <main className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-6 md:py-8">
           <div className="mb-10 grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4">
-            <div className="p-4 rounded-2xl bg-white dark:bg-slate-900 shadow-sm border border-slate-200 dark:border-slate-800">
-              <h1 className="text-xl font-bold tracking-tight text-slate-900 dark:text-white">Finance Dashboard</h1>
-              <p className="mt-1 text-sm text-slate-600 dark:text-slate-300">Track, analyze, and manage your finances with confidence.</p>
+            <div className="card card-hover">
+              <h1 className="text-xl font-bold tracking-tight text-slate-800 dark:text-white">Finance Dashboard</h1>
+              <p className="mt-1 text-sm text-slate-500 dark:text-slate-400">Track, analyze, and manage your finances with confidence.</p>
             </div>
-            <div className="flex items-center justify-between p-4 rounded-2xl bg-gradient-to-r from-blue-600 to-cyan-500 text-white shadow-lg">
+            <div className="card card-hover bg-gradient-to-r from-blue-500 to-cyan-500 text-white shadow-lg border-none">
               <p className="text-xs uppercase tracking-wide opacity-90">Role</p>
               <RoleSwitcher compact />
             </div>
-            <div className="p-4 rounded-2xl bg-white dark:bg-slate-900 shadow-sm border border-slate-200 dark:border-slate-800">
-              <p className="text-xs uppercase text-slate-600 dark:text-gray-400">Current Page</p>
-              <p className="text-sm font-semibold text-slate-900 dark:text-white">{currentPage}</p>
+            <div className="card card-hover">
+              <p className="text-xs uppercase text-slate-500 dark:text-slate-400">Current Page</p>
+              <p className="text-sm font-semibold text-slate-800 dark:text-white">{currentPage}</p>
             </div>
-            <div className="p-4 rounded-2xl bg-white dark:bg-slate-900 shadow-sm border border-slate-200 dark:border-slate-800">
-              <p className="text-xs uppercase text-slate-600 dark:text-gray-400">Last sync</p>
-              <p className="text-sm font-semibold text-slate-900 dark:text-white">{new Date().toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" })}</p>
+            <div className="card card-hover">
+              <p className="text-xs uppercase text-slate-500 dark:text-slate-400">Last sync</p>
+              <p className="text-sm font-semibold text-slate-800 dark:text-white">{new Date().toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" })}</p>
             </div>
           </div>
 

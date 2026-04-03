@@ -35,7 +35,7 @@ export default function Sidebar({ open, setOpen }) {
 
       {/* Sidebar */}
       <aside
-        className={`fixed inset-y-0 left-0 z-40 w-20 md:w-72 xl:w-80 bg-white border-r border-slate-200 shadow-lg dark:bg-slate-900 dark:border-slate-800 dark:shadow-xl transition-all duration-300 ${
+        className={`fixed inset-y-0 left-0 z-40 w-20 md:w-72 xl:w-80 bg-gradient-to-b from-sky-100 via-sky-50 to-sky-100 dark:from-slate-900 dark:to-slate-950 border-r border-sky-200 dark:border-slate-800 shadow-lg dark:shadow-black/50 transition-all duration-300 ${
           open ? "translate-x-0" : "-translate-x-full md:translate-x-0"
         }`}
       >
@@ -44,16 +44,16 @@ export default function Sidebar({ open, setOpen }) {
             {/* Header */}
             <div className="flex items-center justify-between mb-8">
               <div className="flex items-center gap-2">
-                <div className="p-2 rounded-lg bg-cyan-500/10">
-                  <svg className="w-5 h-5 text-cyan-500" fill="currentColor" viewBox="0 0 20 20">
+                <div className="p-2 rounded-lg bg-blue-500/20 dark:bg-blue-400/20">
+                  <svg className="w-5 h-5 text-blue-600 dark:text-blue-200" fill="currentColor" viewBox="0 0 20 20">
                     <path d="M4 3a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V5a2 2 0 00-2-2H4zm12 12H4l4-8 3 6 2-4 3 6z" />
                   </svg>
                 </div>
-                <span className="text-slate-900 dark:text-gray-300 font-bold hidden md:block text-sm">FinanceApp</span>
+                <span className="text-slate-900 dark:text-white font-bold hidden md:block text-sm">FinanceApp</span>
               </div>
               <button
                 onClick={() => setOpen(false)}
-                className="md:hidden rounded-lg p-1 bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-700 dark:text-gray-200 transition-colors"
+                className="md:hidden rounded-lg p-1 bg-blue-50 dark:bg-slate-800 hover:bg-blue-100 dark:hover:bg-slate-700 text-slate-700 dark:text-gray-200 transition-colors"
                 aria-label="Close sidebar"
               >
                 <X className="w-5 h-5" />
@@ -73,8 +73,8 @@ export default function Sidebar({ open, setOpen }) {
                     onClick={() => handleNavClick(item.key)}
                     className={`w-full flex items-center gap-3 px-3 md:px-4 py-3 rounded-xl transition-all duration-200 text-left text-sm font-semibold ${
                       active
-                        ? "bg-gradient-to-r from-blue-500 to-cyan-500 text-white shadow-lg shadow-cyan-500/20"
-                        : "text-slate-600 hover:bg-slate-100 hover:text-slate-900 dark:text-gray-400 dark:hover:bg-slate-800 dark:hover:text-white"
+                        ? "bg-blue-600 text-white shadow-lg shadow-blue-600/30"
+                        : "text-slate-700 hover:bg-blue-50 hover:text-slate-900 dark:text-slate-300 dark:hover:bg-slate-800 dark:hover:text-white"
                     }`}
                   >
                     <Icon className="w-5 h-5 flex-shrink-0" />

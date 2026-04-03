@@ -39,7 +39,7 @@ export default function Insights() {
       : 0;
 
   const InsightCard = ({ icon: Icon, title, value, subtitle, color, bgColor }) => (
-    <div className={`p-6 group relative overflow-hidden animate-fade-in-up rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm dark:shadow-lg hover:shadow-md dark:hover:shadow-xl transition-all duration-300`}>
+    <div className="card card-hover p-6 group relative overflow-hidden animate-fade-in-up">
       {/* Background Accent */}
       <div
         className={`absolute top-0 right-0 w-24 h-24 ${bgColor} opacity-5 dark:opacity-10 rounded-full blur-2xl group-hover:opacity-10 dark:group-hover:opacity-20 transition-opacity duration-300`}
@@ -157,7 +157,7 @@ export default function Insights() {
       </div>
 
       {/* Summary Statistics Card */}
-      <div className="rounded-2xl p-6 md:p-8 border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 shadow-sm dark:shadow-lg animate-fade-in-up">
+      <div className="card card-hover p-6 md:p-8 animate-fade-in-up">
         <h3 className="text-lg font-semibold text-slate-900 dark:text-white mb-6 flex items-center gap-2">
           <span className="p-2 bg-cyan-500/10 dark:bg-cyan-500/20 rounded-lg">
             <Zap className="w-5 h-5 text-cyan-600 dark:text-cyan-400" />

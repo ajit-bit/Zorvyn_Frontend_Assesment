@@ -27,7 +27,7 @@ export default function Topbar() {
   }, []);
 
   return (
-    <header className="sticky top-0 z-30 w-full border-b border-slate-200 backdrop-blur bg-white/70 dark:border-slate-800 dark:bg-slate-950/70 transition-colors duration-300">
+    <header className="sticky top-0 z-30 w-full border-b border-sky-100 backdrop-blur-md bg-white/70 dark:border-slate-800 dark:bg-slate-900/80 transition-colors duration-300">
       <div className="mx-auto flex h-16 w-full max-w-7xl items-center justify-between px-3 sm:px-4 md:px-6 lg:px-8">
         {/* Left: Status Badge */}
         <div className="flex items-center gap-2 flex-1 min-w-0">
@@ -56,7 +56,7 @@ export default function Topbar() {
             whileHover={{ scale: 1.06 }}
             whileTap={{ scale: 0.98 }}
             onClick={() => setDarkMode(!darkMode)}
-            className="rounded-xl border border-slate-200 bg-white p-2 text-slate-600 shadow-sm transition duration-200 hover:bg-slate-100 dark:border-slate-700 dark:bg-slate-900 dark:text-gray-400 dark:hover:bg-slate-800"
+            className="rounded-xl border border-blue-100 bg-white/70 p-2 text-slate-700 shadow-sm transition duration-200 hover:bg-blue-50 dark:border-slate-700 dark:bg-slate-800/70 dark:text-gray-200 dark:hover:bg-slate-700"
             aria-label="Toggle dark mode"
           >
             {darkMode ? (

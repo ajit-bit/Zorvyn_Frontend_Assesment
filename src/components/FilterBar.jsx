@@ -21,7 +21,7 @@ export default function FilterBar() {
   };
 
   return (
-    <div className="rounded-2xl p-4 md:p-8 space-y-6 animate-fade-in-up bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm dark:shadow-lg">
+    <div className="card card-hover p-4 md:p-8 space-y-6 animate-fade-in-up">
       {/* Header */}
       <div className="flex items-center justify-between flex-wrap gap-3">
         <div className="flex items-center gap-3">

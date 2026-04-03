@@ -57,13 +57,16 @@ A modern, production-ready financial dashboard built with React, featuring advan
 ## 📸 Screenshots
 
 ### Dashboard Overview - Light Mode
-![Dashboard Light Mode](./screenshots/img%201.png)
+![Dashboard Light Mode](./screenshots/lightmode.png)
 
 ### Analytics & Insights - Dark Mode
-![Analytics Dark Mode](./screenshots/img%202.png)
+![Analytics Dark Mode](./screenshots/darkmode.png)
 
-### Transaction Management
-![Transactions](./screenshots/img%203.png)
+### Transaction Management 1
+![Transactions 1](./screenshots/transcation1.png)
+
+### Transaction Management 2
+![Transactions 2](./screenshots/transcation2.png)
 
 ---
 

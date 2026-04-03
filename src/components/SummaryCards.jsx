@@ -7,14 +7,7 @@ export default function SummaryCards() {
   const { income, expenses, balance } = calculateSummary(transactions);
 
   const Card = ({ title, value, icon: Icon, bgColor, textColor, gradientFrom, gradientTo }) => (
-    <div
-      className={`relative overflow-hidden rounded-2xl p-6 md:p-8 space-y-3 animate-fade-in-up
-        bg-white dark:bg-slate-900
-        border border-slate-200 dark:border-slate-800
-        shadow-sm dark:shadow-lg
-        hover:shadow-md dark:hover:shadow-xl
-        transition-all duration-300 group`}
-    >
+    <div className="card card-hover relative overflow-hidden p-6 md:p-8 space-y-3 animate-fade-in-up group">
       {/* Gradient Background Effect */}
       <div
         className={`absolute inset-0 opacity-0 group-hover:opacity-5 dark:group-hover:opacity-10 transition-opacity duration-300 ${bgColor}`}
